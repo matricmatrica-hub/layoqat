@@ -3,53 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LAYOQAT — Омӯзиши технологияҳои иттилоотӣ</title>
+<title>LAYOQAT — Маркази омӯзиши ТИ</title>
 
 <style>
-body{font-family:Arial;background:#f5f7fb;margin:0}
+body{font-family:Arial;background:#eef3ff;margin:0}
 header{background:#0d6efd;color:white;padding:25px;text-align:center}
-nav{background:#fff;padding:12px;display:flex;justify-content:center;gap:30px;border-bottom:1px solid #ddd}
+.logo{width:110px}
+nav{background:white;padding:12px;display:flex;justify-content:center;gap:30px;border-bottom:1px solid #ddd}
 nav a{text-decoration:none;color:#0d6efd;font-weight:bold}
 .container{max-width:1100px;margin:auto;padding:20px}
 .card{background:white;padding:20px;border-radius:10px;margin-top:15px;border:1px solid #ddd}
 .footer{background:#0d6efd;color:white;text-align:center;padding:10px;margin-top:30px}
+.lang{position:absolute;right:20px;top:20px}
+.lang button{padding:7px;border:1px solid #0d6efd;background:white;color:#0d6efd;border-radius:7px;font-weight:bold}
+.quiz button{padding:7px;margin-top:10px}
 </style>
 </head>
 
 <body>
 
 <header>
+  <div class="lang">
+    <button>TJ</button>
+    <button>RU</button>
+    <button>EN</button>
+  </div>
+
+  <img src="logo.png" class="logo">
   <h1>LAYOQAT</h1>
   <p>Маркази омӯзиши технологияҳои иттилоотӣ ва компютерӣ</p>
 </header>
 
 <nav>
   <a href="#">Асосӣ</a>
-  <a href="#">Категорияҳо</a>
-  <a href="#">Санҷиши тест</a>
+  <a href="#cat">Категорияҳо</a>
+  <a href="#quiz">Санҷиши тест</a>
 </nav>
 
 <div class="container">
 
   <div class="card">
     <h2>Хуш омадед ба LAYOQAT</h2>
-    <p>Дар ин сайт шумо техника ва технологияҳои иттилоотӣ, компютер, Интернет, Microsoft Office ва дигар малакаҳоро аз сатҳи оғозӣ то сатҳи касбӣ омӯхта метавонед.</p>
+    <p>Дар ин сайт шумо метавонед технологияҳои иттилоотӣ, компютер, Интернет, Microsoft Office ва соҳаҳои дигарро аз сатҳи оғозӣ то сатҳи касбӣ омӯзед.</p>
   </div>
 
-  <div class="card">
+  <div class="card" id="cat">
     <h3>Категорияҳои дарсҳо</h3>
     <ul>
-      <li>Компютер ва Windows</li>
-      <li>Интернет ва амният</li>
-      <li>Microsoft Word / Excel / PowerPoint</li>
-      <li>Барномасозӣ</li>
+      <li>Асосҳои компютер ва Windows</li>
+      <li>Интернет ва амнияти рақамӣ</li>
+      <li>Microsoft Word</li>
+      <li>Microsoft Excel</li>
+      <li>Microsoft PowerPoint</li>
+      <li>Барномасозӣ (Python, Web)</li>
       <li>Технологияҳои муосир</li>
     </ul>
   </div>
 
-  <div class="card">
+  <div class="card" id="quiz">
     <h3>Санҷиши тест</h3>
-    <p>Ба зудӣ дар ин қисмат шумо метавонед тест супоред ва натиҷа дар фоиз нишон дода мешавад.</p>
+    <div class="quiz">
+      <p>1. Компютер чист?</p>
+      <input type="radio" name="q1" value="0"> Дастгоҳи чойҷӯшӣ<br>
+      <input type="radio" name="q1" value="1"> Дастгоҳ барои коркарди маълумот<br>
+
+      <p>2. Windows ин чист?</p>
+      <input type="radio" name="q2" value="1"> Системаи оператсионӣ<br>
+      <input type="radio" name="q2" value="0"> Браузер<br>
+
+      <p>3. Интернет барои чӣ лозим?</p>
+      <input type="radio" name="q3" value="1"> Барои мубодилаи маълумот<br>
+      <input type="radio" name="q3" value="0"> Барои хӯрок пухтан<br>
+
+      <button onclick="result()">Натиҷаро нишон деҳ</button>
+
+      <p id="out"></p>
+    </div>
   </div>
 
 </div>
@@ -57,6 +86,18 @@ nav a{text-decoration:none;color:#0d6efd;font-weight:bold}
 <div class="footer">
   © 2026 Layoqat
 </div>
+
+<script>
+function result(){
+ let s=0;
+ for(let i=1;i<=3;i++){
+   let q=document.getElementsByName("q"+i);
+   for(let a of q){if(a.checked && a.value=="1") s++;}
+ }
+ let p=Math.round((s/3)*100);
+ document.getElementById("out").innerHTML="Шумо "+s+" аз 3 саволро дуруст ҷавоб додед. Баҳо: "+p+" %";
+}
+</script>
 
 </body>
 </html>
